@@ -1,0 +1,1 @@
+yarn add vue-easy-jwt 
