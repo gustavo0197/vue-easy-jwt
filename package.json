@@ -6,11 +6,17 @@
   "repository": "https://www.github.com/gustavo0197/vue-easy-jwt",
   "author": "Gustavo Velazquez Moctezuma",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.ts --exec ts-node",
+    "build": "rm -r .build && tsc --build tsconfig.json"
+  },
   "dependencies": {
+    "base64-url": "^2.2.1",
+    "base64json": "^1.0.3",
     "typescript": "^3.5.1"
   },
   "devDependencies": {
-    "node-ts": "^5.0.1",
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "ts-node": "^8.2.0"
   }
 }
