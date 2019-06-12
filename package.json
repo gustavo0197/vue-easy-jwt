@@ -1,0 +1,16 @@
+{
+  "name": "vue-easy-jwt",
+  "version": "1.0.0",
+  "description": "Library for decoding a jwt token",
+  "main": "index.js",
+  "repository": "https://www.github.com/gustavo0197/vue-easy-jwt",
+  "author": "Gustavo Velazquez Moctezuma",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^3.5.1"
+  },
+  "devDependencies": {
+    "node-ts": "^5.0.1",
+    "nodemon": "^1.19.1"
+  }
+}
