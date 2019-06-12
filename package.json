@@ -7,6 +7,7 @@
   "author": "Gustavo Velazquez Moctezuma",
   "license": "MIT",
   "scripts": {
+    "start": "node .build/index.js",
     "dev": "nodemon index.ts --exec ts-node",
     "build": "rm -r .build && tsc --build tsconfig.json"
   },
