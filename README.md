@@ -1,42 +1,75 @@
-To install this module you can use yarn or npm
+This is a small library for decoding a json web token in vue. Since the header and payload is base64 encoded you can easily know the stored data with no password, you can also know if the token is expired or not.
+
+#### To install this module you can use yarn or npm
 
     yarn add vue-easy-jwt 
     or
     npm install vue-easy-jwt
     
-You can use it in a vue project
+#### You can use it in a vue project
 
-    import { VueEasyJwt } from 'vue-easy-jwt'
-    const jwt = new VueEasyJwt()
+```js
+import { VueEasyJwt } from 'vue-easy-jwt'
+const jwt = new VueEasyJwt()
     
-    # decode some token
-    jwt.decodeToken(yourToken) // you should get a json
+// decode some token
+const decodedToken = jwt.decodeToken(yourToken) // you should get a json
     
-     # you will get a boolean response
-     # true -> if the token is already expired
-     # false -> if the token is not expired
-    jwt.isExpired(yourToken)
-    
-You can also use it for navigation guards
+// you will get a boolean response
+// true -> if the token is already expired
+// false -> if the token is not expired
+const isExpired = jwt.isExpired(yourToken) 
+```
 
-    import VueRouter from 'vue-router'
+#### You can also use it for navigation guards
 
-    const routes = [
-        {
-            path: '/signin',
-            component: SignIn
-        },
-        {
-            path: '/home',
-            component: Home,
-            meta: {
-                requiresAuth: true
+```js
+import VueRouter from 'vue-router'
+import { VueEasyJwt } from 'vue-easy-jwt'
+const jwt = new VueEasyJwt()
+
+// import your components
+import SignIn from 'path_to_component/SignIn.vue'
+import Home from 'path_to_component/Home.vue'
+
+const routes = [
+    {
+        path: '/signin',
+        component: SignIn
+    },
+    {
+        path: '/home',
+        component: Home,
+        meta: {
+            requiresAuth: true
+        }
+    }
+]
+    
+const router = new VueRouter({ routes })
+    
+router.beforeEach( (to, from, next) => {
+    to.matched.some( route => {
+            
+        if( route.meta.requiresAuth ){
+            // import your token, if don't have a token should use an empty string
+            const yourToken = localStorage.getItem('token') || ""
+                
+            // returns true if is expired
+            if( jwt.isExpired(yourToken) ){
+                // if is expired the user should sign in again
+                next({ path: '/signin' })
+            }
+            else {
+                next()
             }
         }
-    ]
-
-    const router = new VueRouter({ routes })
-
-    router.beforeEach( (to, from, next) => {
-        
+        else {
+            next()
+        }
     })
+})
+
+export default router
+    
+```

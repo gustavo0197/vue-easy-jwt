@@ -8,9 +8,9 @@ export class VueEasyJwt {
     }
 
     public decodeToken(token: string){
-        // if the token has more or less than 3 parts
+        // if the token has more or less than 3 parts or is not a string
         // then is not a valid token
-        if(token.split('.').length != 3){
+        if(token.split('.').length != 3 || typeof token != "string" ){
             throw new Error("This is not a valid token")
         }
         else {
