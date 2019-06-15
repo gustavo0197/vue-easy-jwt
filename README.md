@@ -52,10 +52,12 @@ router.beforeEach( (to, from, next) => {
     to.matched.some( route => {
             
         if( route.meta.requiresAuth ){
-            // import your token, if don't have a token should use an empty string
-            const yourToken = localStorage.getItem('token') || ""
+            // import your token
+            const yourToken = localStorage.getItem('token')
                 
             // returns true if is expired
+            // if it is an empty string, null or undefined
+            // will return true (expired)
             if( jwt.isExpired(yourToken) ){
                 // if is expired the user should sign in again
                 next({ path: '/signin' })
