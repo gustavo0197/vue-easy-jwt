@@ -20,13 +20,19 @@ class VueEasyJwt {
         }
     }
     isExpired(token) {
-        // decode the token
-        let decodedToken = this.decodeToken(token);
-        let expirationDate = new Date(0);
-        // sets the expiration seconds 
-        expirationDate.setUTCSeconds(decodedToken.exp);
-        // compare the expiration time and the current time
-        return expirationDate.valueOf() < new Date().valueOf();
+        try {
+            // decode the token
+            let decodedToken = this.decodeToken(token);
+            let expirationDate = new Date(0);
+            // sets the expiration seconds 
+            expirationDate.setUTCSeconds(decodedToken.exp);
+            // compare the expiration time and the current time
+            return expirationDate.valueOf() < new Date().valueOf();
+        }
+        catch (error) {
+            // if has any error is expired
+            return true;
+        }
     }
 }
 exports.VueEasyJwt = VueEasyJwt;

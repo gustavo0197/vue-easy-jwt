@@ -17,5 +17,26 @@ You can use it in a vue project
      # false -> if the token is not expired
     jwt.isExpired(yourToken)
     
+You can also use it for navigation guards
 
+    import VueRouter from 'vue-router'
 
+    const routes = [
+        {
+            path: '/signin',
+            component: SignIn
+        },
+        {
+            path: '/home',
+            component: Home,
+            meta: {
+                requiresAuth: true
+            }
+        }
+    ]
+
+    const router = new VueRouter({ routes })
+
+    router.beforeEach( (to, from, next) => {
+        
+    })
