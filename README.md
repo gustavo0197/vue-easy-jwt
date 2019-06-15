@@ -9,16 +9,16 @@ This is a small library for decoding a json web token in vue. Since the header a
 #### You can use it in a vue project
 
 ```js
-    import { VueEasyJwt } from 'vue-easy-jwt'
-    const jwt = new VueEasyJwt()
+import { VueEasyJwt } from 'vue-easy-jwt'
+const jwt = new VueEasyJwt()
     
-    // decode some token
-    const decodedToken = jwt.decodeToken(yourToken) // you should get a json
+// decode some token
+const decodedToken = jwt.decodeToken(yourToken) // you should get a json
     
-     // you will get a boolean response
-     // true -> if the token is already expired
-     // false -> if the token is not expired
-    const isExpired = jwt.isExpired(yourToken) 
+// you will get a boolean response
+// true -> if the token is already expired
+// false -> if the token is not expired
+const isExpired = jwt.isExpired(yourToken) 
 ```
 
 #### You can also use it for navigation guards
