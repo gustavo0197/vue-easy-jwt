@@ -1,6 +1,6 @@
 {
   "name": "vue-easy-jwt",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Library for decoding a jwt token",
   "main": ".build/index.js",
   "repository": "https://www.github.com/gustavo0197/vue-easy-jwt",

@@ -22,9 +22,11 @@ export default {
     methods: {
         decodeToken(){
             // Decode some token
-            const decodedToken = jwt.decodeToken(yourToken) 
-            // You should get a json if your token has a valid format, even if it's expired
-            // and you will get null if your token has an invalid jwt format
+            const decodedToken = this.jwt.decodeToken(this.yourToken) 
+            // You should get a json if your token has a 
+            // valid format, even if it's expired.
+            // And you will get null if your token 
+            // has an invalid jwt format.
             /*  {
                     sub: '1234567890',
                     name: 'John Doe',
@@ -37,7 +39,7 @@ export default {
             // you will get a true / false response
             // true  -> if the token is already expired
             // false -> if the token is not expired
-            const isExpired = jwt.isExpired(yourToken) 
+            const isExpired = this.jwt.isExpired(this.yourToken) 
         }
     }
 }
