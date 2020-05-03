@@ -2,7 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const base64json = require("base64json");
 exports.default = {
-    install: function (Vue, options) { },
+    install: function (Vue, options) {
+        const jwt = new VueEasyJwt();
+        // Set the getToken funcion if has one
+        if (options.getToken) {
+            jwt.defaultTokenGetter(options.getToken);
+        }
+        // Set a global variable
+        Vue.prototype.$jwt = jwt;
+    },
 };
 class VueEasyJwt {
     constructor() {
@@ -41,6 +49,18 @@ class VueEasyJwt {
         else {
             return true;
         }
+    }
+    // Set a default function to get a token
+    // For example to get a token from the localStorage or sessionStorage
+    defaultTokenGetter(getToken) {
+        this._getToken = getToken;
+    }
+    // Use the getToken function to get the token
+    getToken() {
+        if (this._getToken) {
+            return this._getToken();
+        }
+        return null;
     }
 }
 exports.VueEasyJwt = VueEasyJwt;

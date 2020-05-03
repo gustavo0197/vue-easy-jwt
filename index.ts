@@ -2,11 +2,22 @@ import * as base64json from "base64json";
 import { PluginOptions } from "./types";
 
 export default {
-  install: function (Vue: any, options: PluginOptions): void {},
+  install: function (Vue: any, options: PluginOptions): void {
+    const jwt = new VueEasyJwt();
+
+    // Set the getToken funcion if has one
+    if (options.getToken) {
+      jwt.defaultTokenGetter(options.getToken);
+    }
+
+    // Set a global variable
+    Vue.prototype.$jwt = jwt;
+  },
 };
 
 export class VueEasyJwt {
   private base64: any;
+  private _getToken: () => string;
 
   constructor() {
     this.base64 = base64json;
@@ -45,5 +56,20 @@ export class VueEasyJwt {
     } else {
       return true;
     }
+  }
+
+  // Set a default function to get a token
+  // For example to get a token from the localStorage or sessionStorage
+  public defaultTokenGetter(getToken: () => string) {
+    this._getToken = getToken;
+  }
+
+  // Use the getToken function to get the token
+  public getToken(): string {
+    if (this._getToken) {
+      return this._getToken();
+    }
+
+    return null;
   }
 }

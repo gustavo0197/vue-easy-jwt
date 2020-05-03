@@ -34,3 +34,12 @@ test("decodeToken() Undefined and null tokens", () => {
   expect(jwt.decodeToken(undefined)).toBe(null);
   expect(jwt.decodeToken(null)).toBe(null);
 });
+
+test("getToken function. A function was not set", () => {
+  expect(jwt.getToken()).toBe(null);
+});
+
+test("getToken function. A function was set", () => {
+  jwt.setGetTokenFunction(() => "some token");
+  expect(jwt.getToken()).toBe("some token");
+});
