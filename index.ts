@@ -1,4 +1,4 @@
-import * as base64json from "base64json";
+import * as base64 from "base64json";
 import { PluginOptions } from "./types";
 
 export default {
@@ -6,7 +6,7 @@ export default {
     const jwt = new VueEasyJwt();
 
     // Set the getToken funcion if has one
-    if (options.getToken) {
+    if (options && options.getToken) {
       jwt.defaultTokenGetter(options.getToken);
     }
 
@@ -16,12 +16,7 @@ export default {
 };
 
 export class VueEasyJwt {
-  private base64: any;
   private _getToken: () => string;
-
-  constructor() {
-    this.base64 = base64json;
-  }
 
   public decodeToken(token: string): string {
     try {
@@ -35,7 +30,7 @@ export class VueEasyJwt {
         // data about the expiration time
         const signature = token.split(".")[1];
         // decode and parse to json
-        return this.base64.parse(signature);
+        return base64.parse(signature);
       }
     } catch (error) {
       // Return if something goes wrong
