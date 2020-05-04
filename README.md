@@ -8,6 +8,31 @@ npm install vue-easy-jwt
 
 #### You can use it in a vue project
 
+#### main.js
+```js
+import Vue from 'vue'
+import App from './App.vue'
+import './registerServiceWorker'
+import VueEasyJwt from 'vue-easy-jwt'
+
+Vue.config.productionTip = false
+// You can access to the plugin in your components
+// by using this.$jwt
+Vue.use(VueEasyJwt)
+
+or
+// You can also define a function to get your token in an easy way.
+// In your components you should do this:   this.$jwt.getToken();
+Vue.use(VueEasyJwt, {
+  getToken: () => localStorage.getItem("authorization")
+})
+
+new Vue({
+  render: h => h(App)
+}).$mount('#app')
+
+```
+
 ```html
 <script>
   import { VueEasyJwt } from "vue-easy-jwt";
