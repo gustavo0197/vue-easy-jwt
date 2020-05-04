@@ -1,6 +1,6 @@
 node_modules
-.build/test
 test
 .prettierrc
-types
+tsconfig.json
 index.ts
+./types
