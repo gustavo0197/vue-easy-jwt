@@ -1,9 +1,10 @@
 {
-    "compilerOptions": {
-        "target": "es6",
-        "module": "commonjs",
-        "outDir": ".build",
-        "allowJs": true
-    },
-    "exclude": ["node_modules"]
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": ".build",
+    "allowJs": true,
+    "declaration": true
+  },
+  "exclude": ["node_modules", "test"]
 }
