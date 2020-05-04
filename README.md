@@ -1,11 +1,19 @@
 This is a small library for decoding a json web token in vue. Since the header and payload is base64 encoded you can easily know the stored data with no password, you can also know if the token is expired or not.
 
+#### Version 2.0
+In this version you can use this library as a Vue plugin and you'll be able to use it in your components using *`this.$jwt`*
+
+A version for **Angular** and **React** is coming.
+
 #### To install this module you can use yarn or npm
 
+```
 yarn add vue-easy-jwt
-or
-npm install vue-easy-jwt
 
+or
+
+npm install vue-easy-jwt
+```
 #### You can use it in a vue project
 
 #### main.js
@@ -33,29 +41,29 @@ new Vue({
 
 ```
 
+#### In your components
 ```html
 <script>
-  import { VueEasyJwt } from "vue-easy-jwt";
-
   export default {
     data() {
       return {
-        jwt: new VueEasyJwt(),
-        yourToken: localStorage.getItem("token"),
+        // If you defined a function to get your token
+        // you can use this and you'll get the token
+        yourToken: this.$jwt.getToken(),
       };
     },
     methods: {
       decodeToken() {
         // Decode some token
-        const decodedToken = this.jwt.decodeToken(this.yourToken);
+        const decodedToken = this.$jwt.decodeToken(this.yourToken);
         // You should get a json if your token has a
         // valid format, even if it's expired.
         // And you will get null if your token
-        // has an invalid jwt format.
+        // has an invalid jwt format, null or undefined.
         /*  
           {
             sub: '1234567890',
-            name: 'John Doe',
+            name: 'Gustavo',
             iat: 1516239022,
             exp: 4008900000 
           } 
@@ -65,7 +73,7 @@ new Vue({
         // you will get a true / false response
         // true  -> if the token is already expired
         // false -> if the token is not expired
-        const isExpired = this.jwt.isExpired(this.yourToken);
+        const isExpired = this.$jwt.isExpired(this.yourToken);
       },
     },
   };
