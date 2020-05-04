@@ -1,6 +1,6 @@
 {
   "name": "vue-easy-jwt",
-  "version": "2.0.0-beta.6",
+  "version": "2.0.1",
   "description": "Library for decoding a jwt token",
   "main": ".build/index.js",
   "types": ".build/index.d.ts",
@@ -25,6 +25,10 @@
   "keywords": [
     "vue",
     "jwt",
-    "jsonwebtoken"
+    "jsonwebtoken",
+    "json web token",
+    "token",
+    "auth",
+    "authentication"
   ]
 }
