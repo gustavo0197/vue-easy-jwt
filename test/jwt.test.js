@@ -40,6 +40,6 @@ test("getToken function. A function was not set", () => {
 });
 
 test("getToken function. A function was set", () => {
-  jwt.setGetTokenFunction(() => "some token");
+  jwt.defaultTokenGetter(() => "some token");
   expect(jwt.getToken()).toBe("some token");
 });

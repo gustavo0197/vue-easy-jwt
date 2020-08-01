@@ -1,4 +1,3 @@
-import * as base64 from "base64json";
 import { PluginOptions } from "./types";
 
 export default {
@@ -28,9 +27,9 @@ export class VueEasyJwt {
       } else {
         // signature ( part 2 ) has the data stored and
         // data about the expiration time
-        const signature = token.split(".")[1];
+        const signature: string = token.split(".")[1];
         // decode and parse to json
-        return base64.parse(signature);
+        return JSON.parse(atob(signature));
       }
     } catch (error) {
       // Return if something goes wrong
