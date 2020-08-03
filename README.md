@@ -1,9 +1,12 @@
 This is a small library for decoding a json web token in vue. Since the header and payload is base64 encoded you can easily know the stored data with no password, you can also know if the token is expired or not.
 
+[![NPM](https://img.shields.io/npm/v/vue-easy-jwt.svg)](https://www.npmjs.com/package/vue-easy-jwt)
+
+> You can find a version for React [here](https://github.com/gustavo0197/react-jwt)
+
 #### Version 2.0
 In this version you can use this library as a Vue plugin and you'll be able to use it in your components using *`this.$jwt`*
 
-A version for **Angular** and **React** is coming.
 
 #### To install this module you can use yarn or npm
 
@@ -61,12 +64,7 @@ new Vue({
         // And you will get null if your token
         // has an invalid jwt format, null or undefined.
         /*  
-          {
-            sub: '1234567890',
-            name: 'Gustavo',
-            iat: 1516239022,
-            exp: 4008900000 
-          } 
+          { name: 'Gustavo', iat: 1596408259, exp: 4752168259 } 
         */
       },
       expiredToken() {

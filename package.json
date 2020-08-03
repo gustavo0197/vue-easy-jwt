@@ -1,6 +1,6 @@
 {
   "name": "vue-easy-jwt",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Library for decoding a jwt token",
   "main": ".build/index.js",
   "types": ".build/index.d.ts",
@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node .build/index.js",
-    "dev": "nodemon index.ts --exec ts-node",
+    "dev": "nodemon ./src/index.ts --exec ts-node",
     "build": "tsc --build tsconfig.json",
     "test": "jest"
   },
@@ -28,5 +28,8 @@
     "token",
     "auth",
     "authentication"
-  ]
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@gustavo0197"
+  }
 }

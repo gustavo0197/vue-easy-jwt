@@ -25,11 +25,11 @@ export class VueEasyJwt {
         return null;
         // throw new Error("This is not a valid token")
       } else {
-        // signature ( part 2 ) has the data stored and
+        // payload ( index 1 ) has the data stored and
         // data about the expiration time
-        const signature: string = token.split(".")[1];
+        const payload: string = token.split(".")[1];
         // decode and parse to json
-        return JSON.parse(atob(signature));
+        return JSON.parse(atob(payload));
       }
     } catch (error) {
       // Return if something goes wrong
@@ -40,7 +40,7 @@ export class VueEasyJwt {
   public isExpired(token: string): boolean {
     const decodedToken: any = this.decodeToken(token);
 
-    if (decodedToken) {
+    if (decodedToken && decodedToken.exp) {
       let expirationDate: Date = new Date(0);
       // sets the expiration seconds
       expirationDate.setUTCSeconds(decodedToken.exp);
