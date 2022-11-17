@@ -3,6 +3,7 @@ import { PluginOptions } from "./types";
 export default {
   install: function (Vue: any, options: PluginOptions): void {
     const jwt = new VueEasyJwt();
+    const vueVersion = parseInt(Vue.version);
 
     // Set the getToken funcion if has one
     if (options && options.getToken) {
@@ -10,7 +11,9 @@ export default {
     }
 
     // Set a global variable
-    Vue.prototype.$jwt = jwt;
+    if (vueVersion === 2) Vue.prototype.$jwt = jwt;
+    else if (vueVersion === 3) Vue.config.globalProperties.$jwt = jwt;
+    else throw new Error('Wrong VueJS version');
   },
 };
 
